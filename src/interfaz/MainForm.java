@@ -64,7 +64,7 @@ public class MainForm {
 		letra1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				letra1.setText(String.valueOf(e.getKeyChar()));
+				letra1.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 				letra2.requestFocus();
 				letra1.setEnabled(false);
 			}
@@ -79,7 +79,7 @@ public class MainForm {
 		letra2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				letra2.setText(String.valueOf(e.getKeyChar()));
+				letra2.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 				letra3.requestFocus();
 				letra2.setEnabled(false);
 			}
@@ -94,7 +94,7 @@ public class MainForm {
 		letra3.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				letra3.setText(String.valueOf(e.getKeyChar()));
+				letra3.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 				letra4.requestFocus();
 				letra3.setEnabled(false);
 			}
@@ -110,7 +110,7 @@ public class MainForm {
 		letra4.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				letra4.setText(String.valueOf(e.getKeyChar()));
+				letra4.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 				letra5.requestFocus();
 				letra4.setEnabled(false);
 			}
@@ -126,7 +126,7 @@ public class MainForm {
 		letra5.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				letra5.setText(String.valueOf(e.getKeyChar()));
+				letra5.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 				letra5.setEnabled(false);
 			}
 		});
