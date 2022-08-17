@@ -1,4 +1,4 @@
-package interfaz;
+package wordle;
 
 import java.awt.EventQueue;
 
@@ -18,8 +18,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import javax.swing.JButton;
 
-public class MainForm {
+public class Interfaz {
 
 	private JFrame frame;
 	private JTextField letra1;
@@ -27,7 +28,9 @@ public class MainForm {
 	private JTextField letra3;
 	private JTextField letra4;
 	private JTextField letra5;
-
+	private JButton botonJugar;
+	private Aplicacion aplicacion;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -35,7 +38,7 @@ public class MainForm {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainForm window = new MainForm();
+					Interfaz window = new Interfaz();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +50,8 @@ public class MainForm {
 	/**
 	 * Create the application.
 	 */
-	public MainForm() {
+	public Interfaz() {
+		aplicacion = new Aplicacion();
 		initialize();
 	}
 
@@ -77,7 +81,7 @@ public class MainForm {
 		letra1.setHorizontalAlignment(SwingConstants.CENTER);
 		letra1.setColumns(10);
 		letra1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		letra1.setBounds(103, 51, 45, 45);
+		letra1.setBounds(102, 34, 45, 45);
 
 		frame.getContentPane().add(letra1);
 
@@ -98,7 +102,7 @@ public class MainForm {
 		letra2.setHorizontalAlignment(SwingConstants.CENTER);
 		letra2.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra2.setColumns(10);
-		letra2.setBounds(155, 51, 45, 45);
+		letra2.setBounds(154, 34, 45, 45);
 		frame.getContentPane().add(letra2);
 
 		letra3 = new JTextField();
@@ -120,7 +124,7 @@ public class MainForm {
 		letra3.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra3.setHorizontalAlignment(SwingConstants.CENTER);
 		letra3.setColumns(10);
-		letra3.setBounds(207, 51, 45, 45);
+		letra3.setBounds(206, 34, 45, 45);
 		frame.getContentPane().add(letra3);
 
 		letra4 = new JTextField();
@@ -140,7 +144,7 @@ public class MainForm {
 		letra4.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra4.setHorizontalAlignment(SwingConstants.CENTER);
 		letra4.setColumns(10);
-		letra4.setBounds(259, 51, 45, 45);
+		letra4.setBounds(258, 34, 45, 45);
 		frame.getContentPane().add(letra4);
 
 		letra5 = new JTextField();
@@ -159,9 +163,18 @@ public class MainForm {
 		letra5.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra5.setHorizontalAlignment(SwingConstants.CENTER);
 		letra5.setColumns(10);
-		letra5.setBounds(311, 51, 45, 45);
+		letra5.setBounds(310, 34, 45, 45);
 		frame.getContentPane().add(letra5);
-
+		
+		botonJugar = new JButton("JUGAR");
+		botonJugar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(), letra4.getText(), letra5.getText());
+			}
+		});
+		botonJugar.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		botonJugar.setBounds(102, 376, 253, 45);
+		frame.getContentPane().add(botonJugar);
 		
 	}
 
