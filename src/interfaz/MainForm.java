@@ -63,25 +63,36 @@ public class MainForm {
 		letra1 = new JTextField();
 		letra1.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				letra1.setText(String.valueOf(e.getKeyChar()).toUpperCase());
-				letra2.requestFocus();
-				letra1.setEnabled(false);
+			public void keyTyped(KeyEvent e) {
+				
+				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96  || (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64 ) {
+					letra1.setText(String.valueOf(e.getKeyChar()).toUpperCase());
+					letra2.requestFocus();
+					letra1.setEnabled(false);
+				} else {
+					e.consume();
+				}
 			}
 		});
 		letra1.setHorizontalAlignment(SwingConstants.CENTER);
 		letra1.setColumns(10);
 		letra1.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra1.setBounds(103, 51, 45, 45);
+
 		frame.getContentPane().add(letra1);
 
 		letra2 = new JTextField();
 		letra2.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				letra2.setText(String.valueOf(e.getKeyChar()).toUpperCase());
-				letra3.requestFocus();
-				letra2.setEnabled(false);
+			public void keyTyped(KeyEvent e) {
+				
+				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96 || (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
+					letra2.setText(String.valueOf(e.getKeyChar()).toUpperCase());
+					letra3.requestFocus();
+					letra2.setEnabled(false);
+				} else {
+					e.consume();
+				}
 			}
 		});
 		letra2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -93,15 +104,21 @@ public class MainForm {
 		letra3 = new JTextField();
 		letra3.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				letra3.setText(String.valueOf(e.getKeyChar()).toUpperCase());
-				letra4.requestFocus();
-				letra3.setEnabled(false);
+			public void keyTyped(KeyEvent e) {
+				
+				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96 || (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
+					letra3.setText(String.valueOf(e.getKeyChar()).toUpperCase());
+					letra4.requestFocus();
+					letra3.setEnabled(false);
+				} else {
+					e.consume();
+				}
+
 			}
 		});
+
 		letra3.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra3.setHorizontalAlignment(SwingConstants.CENTER);
-		letra2.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra3.setColumns(10);
 		letra3.setBounds(207, 51, 45, 45);
 		frame.getContentPane().add(letra3);
@@ -109,15 +126,19 @@ public class MainForm {
 		letra4 = new JTextField();
 		letra4.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				letra4.setText(String.valueOf(e.getKeyChar()).toUpperCase());
-				letra5.requestFocus();
-				letra4.setEnabled(false);
+			public void keyTyped(KeyEvent e) {
+				
+				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96 || (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
+					letra4.setText(String.valueOf(e.getKeyChar()).toUpperCase());
+					letra5.requestFocus();
+					letra4.setEnabled(false);
+				} else {
+					e.consume();
+				}
 			}
 		});
 		letra4.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra4.setHorizontalAlignment(SwingConstants.CENTER);
-		letra2.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra4.setColumns(10);
 		letra4.setBounds(259, 51, 45, 45);
 		frame.getContentPane().add(letra4);
@@ -125,26 +146,23 @@ public class MainForm {
 		letra5 = new JTextField();
 		letra5.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				letra5.setText(String.valueOf(e.getKeyChar()).toUpperCase());
-				letra5.setEnabled(false);
+			public void keyTyped(KeyEvent e) {
+				
+				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96 || (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
+					letra5.setText(String.valueOf(e.getKeyChar()).toUpperCase());
+					letra5.setEnabled(false);
+				} else {
+					e.consume();
+				}
 			}
 		});
 		letra5.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra5.setHorizontalAlignment(SwingConstants.CENTER);
-		letra2.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra5.setColumns(10);
 		letra5.setBounds(311, 51, 45, 45);
 		frame.getContentPane().add(letra5);
 
-		/*
-		 * frame.addWindowListener( (WindowListener) new WindowAdapter() { public void
-		 * windowOpened( WindowEvent e ){ if (letra1.getText().length() > 0) {
-		 * letra2.requestFocus(); } else if (letra2.getText().length() > 0) {
-		 * letra3.requestFocus(); } else if (letra3.getText().length() > 0) {
-		 * letra4.requestFocus(); } else if (letra4.getText().length() > 0) {
-		 * letra5.requestFocus(); } } });
-		 */
+		
 	}
 
 }
