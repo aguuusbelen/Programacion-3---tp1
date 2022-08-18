@@ -76,6 +76,7 @@ public class Interfaz {
 					letra1.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 					letra2.requestFocus();
 					letra1.setEnabled(false);
+					letra1.setDisabledTextColor(Color.BLACK);
 				} else {
 					e.consume();
 				}
@@ -100,6 +101,7 @@ public class Interfaz {
 					letra2.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 					letra3.requestFocus();
 					letra2.setEnabled(false);
+					letra2.setDisabledTextColor(Color.BLACK);
 				} else {
 					e.consume();
 				}
@@ -123,6 +125,7 @@ public class Interfaz {
 					letra3.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 					letra4.requestFocus();
 					letra3.setEnabled(false);
+					letra3.setDisabledTextColor(Color.BLACK);
 				} else {
 					e.consume();
 				}
@@ -148,6 +151,7 @@ public class Interfaz {
 					letra4.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 					letra5.requestFocus();
 					letra4.setEnabled(false);
+					letra4.setDisabledTextColor(Color.BLACK);
 				} else {
 					e.consume();
 				}
@@ -170,6 +174,7 @@ public class Interfaz {
 						|| (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
 					letra5.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 					letra5.setEnabled(false);
+					letra5.setDisabledTextColor(Color.BLACK);
 				} else {
 					e.consume();
 				}
@@ -196,9 +201,6 @@ public class Interfaz {
 	}
 
 	private void cambiarColores(ColorLetra[] resultado) {
-		// 0 , 1 , 2 , 3 , 4
-		// letra1, letra2, letra3, letra4, letra5
-
 		letra1.setBackground(GetColor(resultado[0]));
 		letra2.setBackground(GetColor(resultado[1]));
 		letra3.setBackground(GetColor(resultado[2]));
@@ -215,14 +217,5 @@ public class Interfaz {
 			return new Color(153, 255, 153);
 		}
 	}
-//		switch(colorLetra) {
-//			case GRIS:
-//				return Color.GRAY;
-//			case AMARILLO:
-//				return Color.YELLOW;
-//			case VERDE:
-//				return Color.GREEN;
-//		}
-//		return Color.GRAY;
-//	}
+
 }
