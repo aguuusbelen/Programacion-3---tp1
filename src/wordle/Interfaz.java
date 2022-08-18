@@ -30,7 +30,7 @@ public class Interfaz {
 	private JTextField letra5;
 	private JButton botonJugar;
 	private Aplicacion aplicacion;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -65,11 +65,14 @@ public class Interfaz {
 		frame.getContentPane().setLayout(null);
 
 		letra1 = new JTextField();
+		letra1.setForeground(Color.BLACK);
+		letra1.setBackground(Color.WHITE);
 		letra1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				
-				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96  || (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64 ) {
+
+				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96
+						|| (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
 					letra1.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 					letra2.requestFocus();
 					letra1.setEnabled(false);
@@ -86,11 +89,14 @@ public class Interfaz {
 		frame.getContentPane().add(letra1);
 
 		letra2 = new JTextField();
+		letra2.setForeground(Color.BLACK);
+		letra2.setBackground(Color.WHITE);
 		letra2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				
-				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96 || (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
+
+				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96
+						|| (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
 					letra2.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 					letra3.requestFocus();
 					letra2.setEnabled(false);
@@ -106,11 +112,14 @@ public class Interfaz {
 		frame.getContentPane().add(letra2);
 
 		letra3 = new JTextField();
+		letra3.setForeground(Color.BLACK);
+		letra3.setBackground(Color.WHITE);
 		letra3.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				
-				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96 || (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
+
+				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96
+						|| (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
 					letra3.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 					letra4.requestFocus();
 					letra3.setEnabled(false);
@@ -128,11 +137,14 @@ public class Interfaz {
 		frame.getContentPane().add(letra3);
 
 		letra4 = new JTextField();
+		letra4.setForeground(Color.BLACK);
+		letra4.setBackground(Color.WHITE);
 		letra4.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				
-				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96 || (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
+
+				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96
+						|| (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
 					letra4.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 					letra5.requestFocus();
 					letra4.setEnabled(false);
@@ -148,11 +160,14 @@ public class Interfaz {
 		frame.getContentPane().add(letra4);
 
 		letra5 = new JTextField();
+		letra5.setForeground(Color.BLACK);
+		letra5.setBackground(Color.WHITE);
 		letra5.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				
-				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96 || (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
+
+				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96
+						|| (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
 					letra5.setText(String.valueOf(e.getKeyChar()).toUpperCase());
 					letra5.setEnabled(false);
 				} else {
@@ -165,17 +180,49 @@ public class Interfaz {
 		letra5.setColumns(10);
 		letra5.setBounds(310, 34, 45, 45);
 		frame.getContentPane().add(letra5);
-		
+
 		botonJugar = new JButton("JUGAR");
+		botonJugar.setForeground(Color.BLACK);
 		botonJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(), letra4.getText(), letra5.getText());
+				ColorLetra[] resultado = aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(),
+						letra4.getText(), letra5.getText());
+				cambiarColores(resultado);
 			}
 		});
 		botonJugar.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		botonJugar.setBounds(102, 376, 253, 45);
 		frame.getContentPane().add(botonJugar);
-		
 	}
 
+	private void cambiarColores(ColorLetra[] resultado) {
+		// 0 , 1 , 2 , 3 , 4
+		// letra1, letra2, letra3, letra4, letra5
+
+		letra1.setBackground(GetColor(resultado[0]));
+		letra2.setBackground(GetColor(resultado[1]));
+		letra3.setBackground(GetColor(resultado[2]));
+		letra4.setBackground(GetColor(resultado[3]));
+		letra5.setBackground(GetColor(resultado[4]));
+	}
+
+	public Color GetColor(ColorLetra colorLetra) {
+		if (colorLetra.equals(ColorLetra.GRIS)) {
+			return new Color(204, 204, 204);
+		} else if (colorLetra.equals(ColorLetra.AMARILLO)) {
+			return new Color(255, 255, 153);
+		} else {
+			return new Color(153, 255, 153);
+		}
+	}
+//		switch(colorLetra) {
+//			case GRIS:
+//				return Color.GRAY;
+//			case AMARILLO:
+//				return Color.YELLOW;
+//			case VERDE:
+//				return Color.GREEN;
+//		}
+//		return Color.GRAY;
+//	}
 }
