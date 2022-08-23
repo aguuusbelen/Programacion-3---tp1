@@ -63,7 +63,42 @@ public class Interfaz {
 		frame.setBounds(100, 100, 477, 498);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		letras();
 
+		botonJugar = new JButton("JUGAR");
+		botonJugar.setForeground(Color.BLACK);
+		botonJugar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ColorLetra[] resultado = aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(),
+						letra4.getText(), letra5.getText());
+				cambiarColores(resultado);
+			}
+		});
+		botonJugar.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		botonJugar.setBounds(102, 376, 253, 45);
+		frame.getContentPane().add(botonJugar);
+	}
+
+	private void cambiarColores(ColorLetra[] resultado) {
+		letra1.setBackground(GetColor(resultado[0]));
+		letra2.setBackground(GetColor(resultado[1]));
+		letra3.setBackground(GetColor(resultado[2]));
+		letra4.setBackground(GetColor(resultado[3]));
+		letra5.setBackground(GetColor(resultado[4]));
+	}
+
+	public Color GetColor(ColorLetra colorLetra) {
+		if (colorLetra.equals(ColorLetra.GRIS)) {
+			return new Color(204, 204, 204);
+		} else if (colorLetra.equals(ColorLetra.AMARILLO)) {
+			return new Color(255, 255, 153);
+		} else {
+			return new Color(153, 255, 153);
+		}
+	}
+
+	private void letras() {
 		letra1 = new JTextField();
 		letra1.setForeground(Color.BLACK);
 		letra1.setBackground(Color.WHITE);
@@ -185,37 +220,5 @@ public class Interfaz {
 		letra5.setColumns(10);
 		letra5.setBounds(310, 34, 45, 45);
 		frame.getContentPane().add(letra5);
-
-		botonJugar = new JButton("JUGAR");
-		botonJugar.setForeground(Color.BLACK);
-		botonJugar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ColorLetra[] resultado = aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(),
-						letra4.getText(), letra5.getText());
-				cambiarColores(resultado);
-			}
-		});
-		botonJugar.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		botonJugar.setBounds(102, 376, 253, 45);
-		frame.getContentPane().add(botonJugar);
 	}
-
-	private void cambiarColores(ColorLetra[] resultado) {
-		letra1.setBackground(GetColor(resultado[0]));
-		letra2.setBackground(GetColor(resultado[1]));
-		letra3.setBackground(GetColor(resultado[2]));
-		letra4.setBackground(GetColor(resultado[3]));
-		letra5.setBackground(GetColor(resultado[4]));
-	}
-
-	public Color GetColor(ColorLetra colorLetra) {
-		if (colorLetra.equals(ColorLetra.GRIS)) {
-			return new Color(204, 204, 204);
-		} else if (colorLetra.equals(ColorLetra.AMARILLO)) {
-			return new Color(255, 255, 153);
-		} else {
-			return new Color(153, 255, 153);
-		}
-	}
-
 }

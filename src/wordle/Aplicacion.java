@@ -15,13 +15,13 @@ public class Aplicacion {
 	public String palabra() {
 		Random random = new Random();
 		int indice = random.nextInt(0, palabras.length);
-		System.out.print(palabras[indice] + palabras[indice].charAt(0));
+		
 		return palabras[indice];
 	}
 
 	public ColorLetra[] verificar(String letra1, String letra2, String letra3, String letra4, String letra5) {
 		ColorLetra[] valorLetraList = { ColorLetra.GRIS, ColorLetra.AMARILLO, ColorLetra.GRIS, ColorLetra.VERDE, ColorLetra.GRIS};
-		System.out.print(valorLetraList[0]);
+		
 		/*
 		for (int i = 0; i < palabra.length(); i++) {
 			if (palabra.charAt(0) == letra1.charAt(0)) {
