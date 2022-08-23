@@ -73,6 +73,9 @@ public class Interfaz {
 				ColorLetra[] resultado = aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(),
 						letra4.getText(), letra5.getText());
 				cambiarColores(resultado);
+				if (aplicacion.gano) {
+					//termina el juego 
+				}
 			}
 		});
 		botonJugar.setFont(new Font("Tahoma", Font.PLAIN, 25));
