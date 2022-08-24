@@ -30,6 +30,9 @@ public class Interfaz {
 	private JTextField letra5;
 	private JButton botonJugar;
 	private Aplicacion aplicacion;
+	private JTextField textField;
+	private int indicePosicionYDeLetras;
+	private int intentos;
 
 	/**
 	 * Launch the application.
@@ -51,6 +54,8 @@ public class Interfaz {
 	 * Create the application.
 	 */
 	public Interfaz() {
+		indicePosicionYDeLetras = 34;
+		intentos = 0;
 		aplicacion = new Aplicacion();
 		initialize();
 	}
@@ -63,24 +68,37 @@ public class Interfaz {
 		frame.setBounds(100, 100, 477, 498);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		letras();
+
+		generarJTextFieldLetras(indicePosicionYDeLetras);
 
 		botonJugar = new JButton("JUGAR");
-		botonJugar.setForeground(Color.BLACK);
+		botonJugar.setBackground(new Color(153, 255, 204));
+		
+		botonJugar.setForeground(new Color(0, 0, 0));
 		botonJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ColorLetra[] resultado = aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(),
-						letra4.getText(), letra5.getText());
-				cambiarColores(resultado);
-				if (aplicacion.gano) {
-					//termina el juego 
+				if (letra1.getText().length() == 1 && letra2.getText().length() == 1 && letra3.getText().length() == 1
+						&& letra4.getText().length() == 1 && letra5.getText().length() == 1) {
+					ColorLetra[] resultado = aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(),
+							letra4.getText(), letra5.getText());
+					cambiarColores(resultado);
+					intentos += 1;
+					if (aplicacion.getGano() || intentos == 6) { 
+					//termina el juego
+						botonJugar.setEnabled(false);
+						
+					} else {
+						indicePosicionYDeLetras += 55;
+						generarJTextFieldLetras(indicePosicionYDeLetras);
+						letra1.requestFocus();
+					}
 				}
 			}
 		});
 		botonJugar.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		botonJugar.setBounds(102, 376, 253, 45);
 		frame.getContentPane().add(botonJugar);
+
 	}
 
 	private void cambiarColores(ColorLetra[] resultado) {
@@ -101,7 +119,7 @@ public class Interfaz {
 		}
 	}
 
-	private void letras() {
+	private void generarJTextFieldLetras(int y) {
 		letra1 = new JTextField();
 		letra1.setForeground(Color.BLACK);
 		letra1.setBackground(Color.WHITE);
@@ -123,7 +141,7 @@ public class Interfaz {
 		letra1.setHorizontalAlignment(SwingConstants.CENTER);
 		letra1.setColumns(10);
 		letra1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		letra1.setBounds(102, 34, 45, 45);
+		letra1.setBounds(102, y, 45, 45);
 
 		frame.getContentPane().add(letra1);
 
@@ -148,7 +166,7 @@ public class Interfaz {
 		letra2.setHorizontalAlignment(SwingConstants.CENTER);
 		letra2.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra2.setColumns(10);
-		letra2.setBounds(154, 34, 45, 45);
+		letra2.setBounds(154, y, 45, 45);
 		frame.getContentPane().add(letra2);
 
 		letra3 = new JTextField();
@@ -174,7 +192,7 @@ public class Interfaz {
 		letra3.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra3.setHorizontalAlignment(SwingConstants.CENTER);
 		letra3.setColumns(10);
-		letra3.setBounds(206, 34, 45, 45);
+		letra3.setBounds(206, y, 45, 45);
 		frame.getContentPane().add(letra3);
 
 		letra4 = new JTextField();
@@ -198,7 +216,7 @@ public class Interfaz {
 		letra4.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra4.setHorizontalAlignment(SwingConstants.CENTER);
 		letra4.setColumns(10);
-		letra4.setBounds(258, 34, 45, 45);
+		letra4.setBounds(258, y, 45, 45);
 		frame.getContentPane().add(letra4);
 
 		letra5 = new JTextField();
@@ -211,6 +229,7 @@ public class Interfaz {
 				if ((int) e.getKeyChar() < 123 && (int) e.getKeyChar() > 96
 						|| (int) e.getKeyChar() < 91 && (int) e.getKeyChar() > 64) {
 					letra5.setText(String.valueOf(e.getKeyChar()).toUpperCase());
+
 					letra5.setEnabled(false);
 					letra5.setDisabledTextColor(Color.BLACK);
 				} else {
@@ -221,7 +240,9 @@ public class Interfaz {
 		letra5.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		letra5.setHorizontalAlignment(SwingConstants.CENTER);
 		letra5.setColumns(10);
-		letra5.setBounds(310, 34, 45, 45);
+		letra5.setBounds(310, y, 45, 45);
 		frame.getContentPane().add(letra5);
+		frame.revalidate();
+		frame.repaint();
 	}
 }

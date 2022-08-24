@@ -7,15 +7,22 @@ import javax.swing.JTextField;
 
 public class Aplicacion {
 
-	String[] palabras = { "CASAS", "CERCA", "CARGA", "CLASE" };
-	String palabra = palabra();
-	Boolean gano = false;
+	private String[] palabras;
+	private String palabra;
+	private Boolean gano;
 
 	public Aplicacion() {
+		palabras = new String[4];
+		palabras[0] = "CASAS"; 
+		palabras[1] = "CERCA"; 
+		palabras[2] = "CARGA"; 
+		palabras[3] = "CLASE";
+		palabra = buscarPalabra();
+		gano = false;
 		System.out.print(palabra);
 	}
 
-	public String palabra() {
+	public String buscarPalabra() {
 		Random random = new Random();
 		int indice = random.nextInt(0, palabras.length);
 		return palabras[indice];
@@ -73,6 +80,10 @@ public class Aplicacion {
 		}
 
 		return valorLetraList;
+	}
+
+	public Boolean getGano() {
+		return gano;
 	}
 
 }
