@@ -86,4 +86,8 @@ public class Aplicacion {
 		return gano;
 	}
 
+	public String getPalabra() {
+		return palabra;
+	}
+
 }

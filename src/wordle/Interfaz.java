@@ -6,6 +6,8 @@ import javax.naming.LimitExceededException;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.text.JTextComponent;
@@ -30,6 +32,8 @@ public class Interfaz {
 	private JTextField letra5;
 	private JButton botonJugar;
 	private Aplicacion aplicacion;
+	private Ganar ganar;
+	private Perder perder;
 	private JTextField textField;
 	private int indicePosicionYDeLetras;
 	private int intentos;
@@ -57,6 +61,8 @@ public class Interfaz {
 		indicePosicionYDeLetras = 34;
 		intentos = 0;
 		aplicacion = new Aplicacion();
+		ganar = new Ganar(aplicacion.getPalabra());
+		perder = new Perder(aplicacion.getPalabra());
 		initialize();
 	}
 
@@ -73,7 +79,7 @@ public class Interfaz {
 
 		botonJugar = new JButton("JUGAR");
 		botonJugar.setBackground(new Color(153, 255, 204));
-		
+
 		botonJugar.setForeground(new Color(0, 0, 0));
 		botonJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -83,10 +89,15 @@ public class Interfaz {
 							letra4.getText(), letra5.getText());
 					cambiarColores(resultado);
 					intentos += 1;
-					if (aplicacion.getGano() || intentos == 6) { 
-					//termina el juego
+					if (aplicacion.getGano()) {
+						// termina el juego
 						botonJugar.setEnabled(false);
-						
+						ganar.setVisible(true);
+
+					} else if (intentos == 6) {
+						botonJugar.setEnabled(false);
+						perder.setVisible(true);
+							
 					} else {
 						indicePosicionYDeLetras += 55;
 						generarJTextFieldLetras(indicePosicionYDeLetras);
