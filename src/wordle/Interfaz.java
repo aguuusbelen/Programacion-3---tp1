@@ -32,8 +32,6 @@ public class Interfaz {
 	private JTextField letra5;
 	private JButton botonJugar;
 	private Aplicacion aplicacion;
-	private Ganar ganar;
-	private Perder perder;
 	private JTextField textField;
 	private int indicePosicionYDeLetras;
 	private int intentos;
@@ -61,8 +59,6 @@ public class Interfaz {
 		indicePosicionYDeLetras = 10;
 		intentos = 0;
 		aplicacion = new Aplicacion();
-		ganar = new Ganar(aplicacion.getPalabra());
-		perder = new Perder(aplicacion.getPalabra());
 		initialize();
 	}
 
@@ -92,12 +88,12 @@ public class Interfaz {
 					if (aplicacion.getGano()) {
 						// termina el juego
 						botonJugar.setEnabled(false);
-						ganar.setVisible(true);
+						mostrarGanador(aplicacion.getPalabra());
 
 					} else if (intentos == 6) {
 						botonJugar.setEnabled(false);
-						perder.setVisible(true);
-							
+						mostrarPerdedor(aplicacion.getPalabra());
+
 					} else {
 						indicePosicionYDeLetras += 55;
 						generarJTextFieldLetras(indicePosicionYDeLetras);
@@ -107,7 +103,7 @@ public class Interfaz {
 			}
 		});
 		botonJugar.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		botonJugar.setBounds(102, 406, 253, 45);
+		botonJugar.setBounds(105, 406, 253, 45);
 		frame.getContentPane().add(botonJugar);
 
 	}
@@ -128,6 +124,40 @@ public class Interfaz {
 		} else {
 			return new Color(153, 255, 153);
 		}
+	}
+
+	private void mostrarGanador(String palabra) {
+		JLabel lblNewLabel = new JLabel("GANASTE!");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(105, 340, 253, 45);
+		frame.getContentPane().add(lblNewLabel);
+
+		JLabel lblNewLabel_1 = new JLabel("La palabra era: " + palabra);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(99, 368, 264, 29);
+		frame.getContentPane().add(lblNewLabel_1);
+		frame.revalidate();
+		frame.repaint();
+	}
+	
+	private void mostrarPerdedor(String palabra) {
+		JLabel lblNewLabel = new JLabel("PERDISTE :(");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(105, 340, 253, 45);
+		frame.getContentPane().add(lblNewLabel);
+
+		JLabel lblNewLabel_1 = new JLabel("La palabra era: " + palabra);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(99, 368, 264, 29);
+		frame.getContentPane().add(lblNewLabel_1);
+		frame.revalidate();
+		frame.repaint();
 	}
 
 	private void generarJTextFieldLetras(int y) {
