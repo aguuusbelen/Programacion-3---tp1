@@ -58,7 +58,7 @@ public class Interfaz {
 	 * Create the application.
 	 */
 	public Interfaz() {
-		indicePosicionYDeLetras = 34;
+		indicePosicionYDeLetras = 10;
 		intentos = 0;
 		aplicacion = new Aplicacion();
 		ganar = new Ganar(aplicacion.getPalabra());
@@ -107,7 +107,7 @@ public class Interfaz {
 			}
 		});
 		botonJugar.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		botonJugar.setBounds(102, 376, 253, 45);
+		botonJugar.setBounds(102, 406, 253, 45);
 		frame.getContentPane().add(botonJugar);
 
 	}
