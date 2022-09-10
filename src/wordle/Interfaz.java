@@ -81,7 +81,7 @@ public class Interfaz {
 			public void actionPerformed(ActionEvent e) {
 				if (letra1.getText().length() == 1 && letra2.getText().length() == 1 && letra3.getText().length() == 1
 						&& letra4.getText().length() == 1 && letra5.getText().length() == 1) {
-					ColorLetra[] resultado = aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(),
+					ColorLetra[] resultado = aplicacion.verificar2(letra1.getText(), letra2.getText(), letra3.getText(),
 							letra4.getText(), letra5.getText());
 					cambiarColores(resultado);
 					intentos += 1;

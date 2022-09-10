@@ -13,9 +13,9 @@ public class Aplicacion {
 
 	public Aplicacion() {
 		palabras = new String[4];
-		palabras[0] = "CASAS"; 
-		palabras[1] = "CERCA"; 
-		palabras[2] = "CARGA"; 
+		palabras[0] = "CASAS";
+		palabras[1] = "CERCA";
+		palabras[2] = "CARGA";
 		palabras[3] = "CLASE";
 		palabra = buscarPalabra();
 		gano = false;
@@ -28,58 +28,45 @@ public class Aplicacion {
 		return palabras[indice];
 	}
 
-	public ColorLetra[] verificar(String letra1, String letra2, String letra3, String letra4, String letra5) {
-
-		ColorLetra[] valorLetraList = { ColorLetra.GRIS, ColorLetra.GRIS, ColorLetra.GRIS, ColorLetra.GRIS,
+	
+	public ColorLetra[] verificar2(String letra1, String letra2, String letra3, String letra4, String letra5) {
+		String nuevaPalabra = palabra;
+		char[] letras = { letra1.charAt(0), letra2.charAt(0), letra3.charAt(0), letra4.charAt(0), letra5.charAt(0) };
+		ColorLetra[] valorLetraLista = { ColorLetra.GRIS, ColorLetra.GRIS, ColorLetra.GRIS, ColorLetra.GRIS,
 				ColorLetra.GRIS };
 
-		for (int i = 0; i < palabra.length(); i++) {
-			if (palabra.charAt(0) == letra1.charAt(0)) {
-				valorLetraList[0] = ColorLetra.VERDE;
-			} else if (letra1.charAt(0) == palabra.charAt(i) && i != 0) {
-				valorLetraList[0] = ColorLetra.AMARILLO;
+		// Reviso cuales letras con las verdes y reemplazo la posicion de la letra en la palabra por un espacio
+		for (int i = 0; i < letras.length; i++) {
+			if (letras[i] == nuevaPalabra.charAt(i)) {
+				valorLetraLista[i] = ColorLetra.VERDE;
+				String nuevaPalabraAux = nuevaPalabra.substring(0, i) + '_' + nuevaPalabra.substring(i + 1);
+				nuevaPalabra = nuevaPalabraAux;
 			}
 		}
 
-		for (int i = 0; i < palabra.length(); i++) {
-			if (palabra.charAt(1) == letra2.charAt(0)) {
-				valorLetraList[1] = ColorLetra.VERDE;
-			} else if (letra2.charAt(0) == palabra.charAt(i) && i != 1) {
-				valorLetraList[1] = ColorLetra.AMARILLO;
+		// Reviso cuales letras estan en la palabra (amarillo) y reemplazo la posicion de la letra en la palabra por un espacio
+		for (int i = 0; i < letras.length; i++) {
+			if (valorLetraLista[i] != ColorLetra.VERDE) {
+				boolean esAmarillo = false;
+				for (int j = 0; j < letras.length; j++) {
+					if (letras[i] == nuevaPalabra.charAt(j) && !esAmarillo) {
+						esAmarillo = true;
+						valorLetraLista[i] = ColorLetra.AMARILLO;
+						String nuevaPalabraAux = nuevaPalabra.substring(0, j) + "_" + nuevaPalabra.substring(j + 1);
+						nuevaPalabra = nuevaPalabraAux;
+					}
+				}
 			}
 		}
 
-		for (int i = 0; i < palabra.length(); i++) {
-			if (palabra.charAt(2) == letra3.charAt(0)) {
-				valorLetraList[2] = ColorLetra.VERDE;
-			} else if (letra3.charAt(0) == palabra.charAt(i) && i != 2) {
-				valorLetraList[2] = ColorLetra.AMARILLO;
-			}
-		}
-
-		for (int i = 0; i < palabra.length(); i++) {
-			if (palabra.charAt(3) == letra4.charAt(0)) {
-				valorLetraList[3] = ColorLetra.VERDE;
-			} else if (letra4.charAt(0) == palabra.charAt(i) && i != 3) {
-				valorLetraList[3] = ColorLetra.AMARILLO;
-			}
-		}
-
-		for (int i = 0; i < palabra.length(); i++) {
-			if (palabra.charAt(4) == letra5.charAt(0)) {
-				valorLetraList[4] = ColorLetra.VERDE;
-			} else if (letra5.charAt(0) == palabra.charAt(i) && i != 4) {
-				valorLetraList[4] = ColorLetra.AMARILLO;
-			}
-		}
-
-		if (palabra.charAt(0) == letra1.charAt(0) && palabra.charAt(1) == letra2.charAt(0)
-				&& palabra.charAt(2) == letra3.charAt(0) && palabra.charAt(3) == letra4.charAt(0)
-				&& palabra.charAt(4) == letra5.charAt(0)) {
+		// Por ultimo, verificamos si gano o no
+		if (valorLetraLista[0] == ColorLetra.VERDE && valorLetraLista[1] == ColorLetra.VERDE
+				&& valorLetraLista[2] == ColorLetra.VERDE && valorLetraLista[3] == ColorLetra.VERDE
+				&& valorLetraLista[4] == ColorLetra.VERDE) {
 			gano = true;
 		}
 
-		return valorLetraList;
+		return valorLetraLista;
 	}
 
 	public Boolean getGano() {
