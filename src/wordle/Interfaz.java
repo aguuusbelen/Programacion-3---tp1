@@ -12,11 +12,13 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.text.JTextComponent;
 
+import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -77,11 +79,48 @@ public class Interfaz {
 		botonJugar.setBackground(new Color(153, 255, 204));
 
 		botonJugar.setForeground(new Color(0, 0, 0));
+		botonJugar.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER){
+					if (letra1.getText().length() == 1 && letra2.getText().length() == 1 && letra3.getText().length() == 1
+							&& letra4.getText().length() == 1 && letra5.getText().length() == 1) {
+						ColorLetra[] resultado = aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(),
+								letra4.getText(), letra5.getText());
+						cambiarColores(resultado);
+						intentos += 1;
+						if (aplicacion.getGano()) {
+							// termina el juego
+							botonJugar.setEnabled(false);
+							mostrarGanador(aplicacion.getPalabra());
+
+						} else if (intentos == 6) {
+							botonJugar.setEnabled(false);
+							mostrarPerdedor(aplicacion.getPalabra());
+
+						} else {
+							indicePosicionYDeLetras += 55;
+							generarJTextFieldLetras(indicePosicionYDeLetras);
+							letra1.requestFocus();
+						}
+					}
+                }
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
+		
 		botonJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (letra1.getText().length() == 1 && letra2.getText().length() == 1 && letra3.getText().length() == 1
 						&& letra4.getText().length() == 1 && letra5.getText().length() == 1) {
-					ColorLetra[] resultado = aplicacion.verificar2(letra1.getText(), letra2.getText(), letra3.getText(),
+					ColorLetra[] resultado = aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(),
 							letra4.getText(), letra5.getText());
 					cambiarColores(resultado);
 					intentos += 1;
@@ -142,7 +181,7 @@ public class Interfaz {
 		frame.revalidate();
 		frame.repaint();
 	}
-	
+
 	private void mostrarPerdedor(String palabra) {
 		JLabel lblNewLabel = new JLabel("PERDISTE :(");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));

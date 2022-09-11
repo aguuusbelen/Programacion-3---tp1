@@ -1,5 +1,7 @@
 package wordle;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -10,13 +12,13 @@ public class Aplicacion {
 	private String[] palabras;
 	private String palabra;
 	private Boolean gano;
+	private Diccionario diccionario;
 
 	public Aplicacion() {
-		palabras = new String[4];
-		palabras[0] = "CASAS";
-		palabras[1] = "CERCA";
-		palabras[2] = "CARGA";
-		palabras[3] = "CLASE";
+		// String palabrasACargar[] = { "CASAS", "CERCA", "CARGA", "CLASE" };
+		// palabras = palabrasACargar;
+		diccionario = new Diccionario();
+		palabras = diccionario.obtenerPalabras();
 		palabra = buscarPalabra();
 		gano = false;
 		System.out.print(palabra);
@@ -29,7 +31,7 @@ public class Aplicacion {
 	}
 
 	
-	public ColorLetra[] verificar2(String letra1, String letra2, String letra3, String letra4, String letra5) {
+	public ColorLetra[] verificar(String letra1, String letra2, String letra3, String letra4, String letra5) {
 		String nuevaPalabra = palabra;
 		char[] letras = { letra1.charAt(0), letra2.charAt(0), letra3.charAt(0), letra4.charAt(0), letra5.charAt(0) };
 		ColorLetra[] valorLetraLista = { ColorLetra.GRIS, ColorLetra.GRIS, ColorLetra.GRIS, ColorLetra.GRIS,
