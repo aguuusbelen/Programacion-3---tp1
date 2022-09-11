@@ -118,27 +118,7 @@ public class Interfaz {
 		
 		botonJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (letra1.getText().length() == 1 && letra2.getText().length() == 1 && letra3.getText().length() == 1
-						&& letra4.getText().length() == 1 && letra5.getText().length() == 1) {
-					ColorLetra[] resultado = aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(),
-							letra4.getText(), letra5.getText());
-					cambiarColores(resultado);
-					intentos += 1;
-					if (aplicacion.getGano()) {
-						// termina el juego
-						botonJugar.setEnabled(false);
-						mostrarGanador(aplicacion.getPalabra());
-
-					} else if (intentos == 6) {
-						botonJugar.setEnabled(false);
-						mostrarPerdedor(aplicacion.getPalabra());
-
-					} else {
-						indicePosicionYDeLetras += 55;
-						generarJTextFieldLetras(indicePosicionYDeLetras);
-						letra1.requestFocus();
-					}
-				}
+				jugar();
 			}
 		});
 		botonJugar.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -165,6 +145,29 @@ public class Interfaz {
 		}
 	}
 
+	private void jugar() {
+		if (letra1.getText().length() == 1 && letra2.getText().length() == 1 && letra3.getText().length() == 1
+				&& letra4.getText().length() == 1 && letra5.getText().length() == 1) {
+			ColorLetra[] resultado = aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(),
+					letra4.getText(), letra5.getText());
+			cambiarColores(resultado);
+			intentos += 1;
+			if (aplicacion.getGano()) {
+				// termina el juego
+				botonJugar.setEnabled(false);
+				mostrarGanador(aplicacion.getPalabra());
+
+			} else if (intentos == 6) {
+				botonJugar.setEnabled(false);
+				mostrarPerdedor(aplicacion.getPalabra());
+
+			} else {
+				indicePosicionYDeLetras += 55;
+				generarJTextFieldLetras(indicePosicionYDeLetras);
+				letra1.requestFocus();
+			}
+		}
+	}
 	private void mostrarGanador(String palabra) {
 		JLabel lblNewLabel = new JLabel("GANASTE!");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -183,7 +186,7 @@ public class Interfaz {
 	}
 
 	private void mostrarPerdedor(String palabra) {
-		JLabel lblNewLabel = new JLabel("PERDISTE :(");
+		JLabel lblNewLabel = new JLabel("NO QUEDAN INTENTOS :(");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
