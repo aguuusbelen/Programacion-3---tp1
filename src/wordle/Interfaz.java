@@ -2,26 +2,20 @@ package wordle;
 
 import java.awt.EventQueue;
 
-import javax.naming.LimitExceededException;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.text.JTextComponent;
 
-import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import javax.swing.JButton;
 
 public class Interfaz {
@@ -34,7 +28,6 @@ public class Interfaz {
 	private JTextField letra5;
 	private JButton botonJugar;
 	private Aplicacion aplicacion;
-	private JTextField textField;
 	private int indicePosicionYDeLetras;
 	private int intentos;
 
@@ -73,7 +66,7 @@ public class Interfaz {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		generarJTextFieldLetras(indicePosicionYDeLetras);
+		generarCasillerosLetras(indicePosicionYDeLetras);
 
 		botonJugar = new JButton("JUGAR");
 		botonJugar.setBackground(new Color(153, 255, 204));
@@ -86,36 +79,16 @@ public class Interfaz {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode()==KeyEvent.VK_ENTER){
-					if (letra1.getText().length() == 1 && letra2.getText().length() == 1 && letra3.getText().length() == 1
-							&& letra4.getText().length() == 1 && letra5.getText().length() == 1) {
-						ColorLetra[] resultado = aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(),
-								letra4.getText(), letra5.getText());
-						cambiarColores(resultado);
-						intentos += 1;
-						if (aplicacion.getGano()) {
-							// termina el juego
-							botonJugar.setEnabled(false);
-							mostrarGanador(aplicacion.getPalabra());
-
-						} else if (intentos == 6) {
-							botonJugar.setEnabled(false);
-							mostrarPerdedor(aplicacion.getPalabra());
-
-						} else {
-							indicePosicionYDeLetras += 55;
-							generarJTextFieldLetras(indicePosicionYDeLetras);
-							letra1.requestFocus();
-						}
-					}
-                }
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					jugar();
+				}
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
 			}
 		});
-		
+
 		botonJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jugar();
@@ -125,6 +98,29 @@ public class Interfaz {
 		botonJugar.setBounds(105, 406, 253, 45);
 		frame.getContentPane().add(botonJugar);
 
+	}
+
+	private void jugar() {
+		if (letra1.getText().length() == 1 && letra2.getText().length() == 1 && letra3.getText().length() == 1
+				&& letra4.getText().length() == 1 && letra5.getText().length() == 1) {
+			ColorLetra[] resultado = aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(),
+					letra4.getText(), letra5.getText());
+			cambiarColores(resultado);
+			intentos += 1;
+			if (aplicacion.getGano()) {
+				botonJugar.setEnabled(false);
+				mostrarGanador(aplicacion.getPalabra());
+
+			} else if (intentos == 6) {
+				botonJugar.setEnabled(false);
+				mostrarPerdedor(aplicacion.getPalabra());
+
+			} else {
+				indicePosicionYDeLetras += 55;
+				generarCasillerosLetras(indicePosicionYDeLetras);
+				letra1.requestFocus();
+			}
+		}
 	}
 
 	private void cambiarColores(ColorLetra[] resultado) {
@@ -145,29 +141,6 @@ public class Interfaz {
 		}
 	}
 
-	private void jugar() {
-		if (letra1.getText().length() == 1 && letra2.getText().length() == 1 && letra3.getText().length() == 1
-				&& letra4.getText().length() == 1 && letra5.getText().length() == 1) {
-			ColorLetra[] resultado = aplicacion.verificar(letra1.getText(), letra2.getText(), letra3.getText(),
-					letra4.getText(), letra5.getText());
-			cambiarColores(resultado);
-			intentos += 1;
-			if (aplicacion.getGano()) {
-				// termina el juego
-				botonJugar.setEnabled(false);
-				mostrarGanador(aplicacion.getPalabra());
-
-			} else if (intentos == 6) {
-				botonJugar.setEnabled(false);
-				mostrarPerdedor(aplicacion.getPalabra());
-
-			} else {
-				indicePosicionYDeLetras += 55;
-				generarJTextFieldLetras(indicePosicionYDeLetras);
-				letra1.requestFocus();
-			}
-		}
-	}
 	private void mostrarGanador(String palabra) {
 		JLabel lblNewLabel = new JLabel("GANASTE!");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -202,7 +175,7 @@ public class Interfaz {
 		frame.repaint();
 	}
 
-	private void generarJTextFieldLetras(int y) {
+	private void generarCasillerosLetras(int y) {
 		letra1 = new JTextField();
 		letra1.setForeground(Color.BLACK);
 		letra1.setBackground(Color.WHITE);

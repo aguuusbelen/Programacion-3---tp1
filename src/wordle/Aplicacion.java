@@ -1,11 +1,8 @@
 package wordle;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
 
-import javax.swing.JTextField;
+import java.util.Random;
+
 
 public class Aplicacion {
 
@@ -15,13 +12,12 @@ public class Aplicacion {
 	private Diccionario diccionario;
 
 	public Aplicacion() {
-		// String palabrasACargar[] = { "CASAS", "CERCA", "CARGA", "CLASE" };
-		// palabras = palabrasACargar;
+
 		diccionario = new Diccionario();
 		palabras = diccionario.obtenerPalabras();
 		palabra = buscarPalabra();
 		gano = false;
-		System.out.print(palabra);
+
 	}
 
 	public String buscarPalabra() {
@@ -30,14 +26,12 @@ public class Aplicacion {
 		return palabras[indice];
 	}
 
-	
 	public ColorLetra[] verificar(String letra1, String letra2, String letra3, String letra4, String letra5) {
 		String nuevaPalabra = palabra;
 		char[] letras = { letra1.charAt(0), letra2.charAt(0), letra3.charAt(0), letra4.charAt(0), letra5.charAt(0) };
 		ColorLetra[] valorLetraLista = { ColorLetra.GRIS, ColorLetra.GRIS, ColorLetra.GRIS, ColorLetra.GRIS,
 				ColorLetra.GRIS };
 
-		// Reviso cuales letras con las verdes y reemplazo la posicion de la letra en la palabra por un espacio
 		for (int i = 0; i < letras.length; i++) {
 			if (letras[i] == nuevaPalabra.charAt(i)) {
 				valorLetraLista[i] = ColorLetra.VERDE;
@@ -46,7 +40,6 @@ public class Aplicacion {
 			}
 		}
 
-		// Reviso cuales letras estan en la palabra (amarillo) y reemplazo la posicion de la letra en la palabra por un espacio
 		for (int i = 0; i < letras.length; i++) {
 			if (valorLetraLista[i] != ColorLetra.VERDE) {
 				boolean esAmarillo = false;
@@ -61,7 +54,6 @@ public class Aplicacion {
 			}
 		}
 
-		// Por ultimo, verificamos si gano o no
 		if (valorLetraLista[0] == ColorLetra.VERDE && valorLetraLista[1] == ColorLetra.VERDE
 				&& valorLetraLista[2] == ColorLetra.VERDE && valorLetraLista[3] == ColorLetra.VERDE
 				&& valorLetraLista[4] == ColorLetra.VERDE) {
@@ -78,5 +70,11 @@ public class Aplicacion {
 	public String getPalabra() {
 		return palabra;
 	}
+
+	public void setPalabra(String palabra) {
+		this.palabra = palabra;
+	}
+	
+	
 
 }

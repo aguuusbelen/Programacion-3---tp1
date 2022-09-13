@@ -8,11 +8,11 @@ import java.util.List;
 
 public class Diccionario {
 	private String rutaTexto;
-	
+
 	public Diccionario() {
 		rutaTexto = System.getProperty("user.dir") + "\\src\\wordle\\Palabras.txt";
 	}
-	
+
 	public String[] obtenerPalabras() {
 		List<String> palabras = new ArrayList<>();
 		File file = new File(rutaTexto);
@@ -20,9 +20,9 @@ public class Diccionario {
 		try {
 			br = new BufferedReader(new FileReader(file));
 			String st;
-		    while ((st = br.readLine()) != null) {
-		    	palabras.add(st);
-		    }
+			while ((st = br.readLine()) != null) {
+				palabras.add(st);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
