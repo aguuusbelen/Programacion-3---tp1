@@ -23,7 +23,7 @@ El objetivo del trabajo práctico es implementar una aplicación para jugar a Wo
 El usuario tiene seis intentos para descubrir la palabra secreta. Si luego de los seis intentos no lo consigue, pierde el juego.
 La aplicación cuenta con una interfaz visual donde se pueden observar cinco casilleros para completar la palabra y el botón “JUGAR” que, al ser presionado, nos indicara si acertamos o no la palabra secreta. No podemos oprimir el botón si los casilleros estan vacíos. Además, en los casilleros, solo podemos escribir letras.
 
-image:: main/images/img1.jpg
+image:: main/images/img1.jpg[pantalla de juego]
 
 Podemos accionar el botón “JUGAR” oprimiendo la tecla enter o haciendo o click sobre el mismo. 
 
