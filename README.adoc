@@ -31,7 +31,7 @@ image:: images/img2.jpg
 Si la palabra introducida no es correcta, los casilleros se pintarán de verde, amarillo o gris, según corresponda. Tambien aparecerán en pantalla nuevos casilleros para intentar adivinar nuevamente. 
 Una vez completados todos los intentos o si adivinamos la palabra, el boton “JUGAR” queda desactivado y en la pantalla se mostrará alguno de los siguientes mensajes:
 
-image:: images/img3.jpg
+image::/main/images/img3.JPG
 
 En la clase Interfaz tenemos el método generarCasillerosLetras(int y) que recibe una posición y para crear los casilleros. A cada casillero lo llamamos: letra1, letra2, letra3, letra4 y, letra5. Cada uno de estos casilleros verifica que la tecla oprimida sea una letra:
 
